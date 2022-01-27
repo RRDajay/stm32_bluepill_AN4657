@@ -86,27 +86,33 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_USART1_UART_Init();
 
   if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_1) == GPIO_PIN_RESET) {
-    uint8_t* toSend = "Entered IAP\r\n";
+    
+    /* Initialize Flash */
+    FLASH_If_Init();
+
+    /* Initialize UART1 */
+    MX_USART1_UART_Init();
+
+    /* Display Main Menu */
     Main_Menu();
   }
   
-  if(((*(__IO uint32_t*)APPLICATION_ADDRESS) & 0x2FFE0000 ) == 0x20000000) {
-    
-    /* Jump to user application */
-    JumpAddress = *(__IO uint32_t*)(APPLICATION_ADDRESS + 4);
-    JumpToApplication = (pFunction) JumpAddress;
-
-    /* Initialize user application's stack pointer */
-    __set_MSP(*(__IO uint32_t*) APPLICATION_ADDRESS);
-    JumpToApplication();
-
+    /* Test if user code is programmed starting from address "APPLICATION_ADDRESS" */
+  if (((*(__IO uint32_t*)APPLICATION_ADDRESS) & 0x2FFE0000 ) == 0x20000000){
+      /* Jump to user application */
+      JumpAddress = *(__IO uint32_t*) (APPLICATION_ADDRESS + 4);
+      JumpToApplication = (pFunction) JumpAddress;
+      /* Initialize user application's Stack Pointer */
+      __set_MSP(*(__IO uint32_t*) APPLICATION_ADDRESS);
+      JumpToApplication();
+    }
+  
+  while(1) {
+    HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+    HAL_Delay(100);
   }
-
-
-  while(1);
 }
 
 /**

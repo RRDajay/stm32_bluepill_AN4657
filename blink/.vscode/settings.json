@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "gpio.h": "c",
+        "hc05.h": "c",
+        "stm32f1xx_hal_uart.h": "c",
+        "stm32f1xx.h": "c",
+        "stm32f103xb.h": "c"
+    },
+    "cortex-debug.registerUseNaturalFormat": false
+}
