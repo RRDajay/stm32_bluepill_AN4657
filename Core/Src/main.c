@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "menu.h"
+#include "crc.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -94,6 +95,7 @@ int main(void)
 
     /* Initialize UART1 */
     MX_USART1_UART_Init();
+    MX_CRC_Init();
 
     /* Display Main Menu */
     Main_Menu();
