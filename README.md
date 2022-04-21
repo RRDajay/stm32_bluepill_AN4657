@@ -32,7 +32,7 @@ Download image to internal flash allows you program your application code to the
 
 Upload image from internal flash allows you to save the .bin file currently programmed inside the bluepill.
 
-1. Select Upload image from the internal flash in the options by pressing ```1```.
+1. Select Upload image from the internal flash in the options by pressing ```2```.
 2. Select ```File>Transfer>YMODEM>Receive```
 3. The received .bin file should be located at where the last directory you've accessed with Tera Term.
 
