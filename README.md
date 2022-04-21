@@ -10,6 +10,7 @@ The bootloader allows you to program the device's flash using UART1 and to check
 2. Tera Term/Minicom
 3. Openocd
 4. ST-LINK/V2
+5. Make 
 
 # Usage
 ## Getting Started 
